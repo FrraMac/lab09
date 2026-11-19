@@ -69,6 +69,13 @@ public class BadIOGUI {
                 }
             }
         );
+
+        final JPanel canvas2 = new JPanel();
+        // Horizontal alignment.
+        canvas2.setLayout(new BoxLayout(canvas2, BoxLayout.X_AXIS));
+        canvas.add(canvas2, BorderLayout.CENTER);
+        canvas2.add(write);
+        frame.setContentPane(canvas2);
     }
 
     private void display() {
@@ -94,6 +101,8 @@ public class BadIOGUI {
          * OK, ready to push the frame onscreen
          */
         frame.setVisible(true);
+
+        frame.pack();
     }
 
     /**
