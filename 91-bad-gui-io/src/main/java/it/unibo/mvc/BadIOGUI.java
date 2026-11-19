@@ -12,9 +12,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Random;
 
@@ -61,7 +63,7 @@ public class BadIOGUI {
                      * your UI becomes completely unresponsive.
                      */
                     try (PrintStream ps = new PrintStream(PATH, StandardCharsets.UTF_8)) {
-                        ps.print(randomGenerator.nextInt());
+                        ps.print(randomGenerator.nextInt());                        
                     } catch (final IOException e) {
                         JOptionPane.showMessageDialog(frame, e, "Error", JOptionPane.ERROR_MESSAGE);
                         e.printStackTrace(); // NOPMD: allowed as this is just an exercise
@@ -81,8 +83,24 @@ public class BadIOGUI {
 
         frame.setContentPane(myCanvas);
 
-        read.addActionListener(
+        /*read.addActionListener(
             (final ActionEvent ignored) -> System.out.print(Math.random() + " ")
+        );
+        */
+        read.addActionListener(
+            new ActionListener() {
+                @Override 
+                final public void actionPerformed(final ActionEvent ignored) {
+                    try {
+                        String number = Files.readString(Path.of(PATH));
+                        System.out.println(number);
+                        
+                    } catch (final IOException e) {
+                        JOptionPane.showMessageDialog(frame, e, "Error", JOptionPane.ERROR_MESSAGE);
+                        e.printStackTrace(); // NOPMD: allowed as this is just an exercise
+                    }
+                }
+            }
         );
     }
 
