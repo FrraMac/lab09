@@ -70,12 +70,20 @@ public class BadIOGUI {
             }
         );
 
-        final JPanel canvas2 = new JPanel();
+        final JPanel myCanvas = new JPanel();
         // Horizontal alignment.
-        canvas2.setLayout(new BoxLayout(canvas2, BoxLayout.X_AXIS));
-        canvas.add(canvas2, BorderLayout.CENTER);
-        canvas2.add(write);
-        frame.setContentPane(canvas2);
+        myCanvas.setLayout(new BoxLayout(myCanvas, BoxLayout.X_AXIS));
+        canvas.add(myCanvas, BorderLayout.CENTER);
+        myCanvas.add(write);
+
+        final JButton read = new JButton("Read");
+        myCanvas.add(read);
+
+        frame.setContentPane(myCanvas);
+
+        read.addActionListener(
+            (final ActionEvent ignored) -> System.out.print(Math.random() + " ")
+        );
     }
 
     private void display() {
