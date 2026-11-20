@@ -6,7 +6,6 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 
-import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -71,6 +70,13 @@ public final class SimpleGUIWithFileChooser {
                 
                 // 4. Aggiorna l'interfaccia grafica riflettendo il nuovo percorso
                 textField.setText(controller.getCurrentPath());
+
+                JOptionPane.showMessageDialog(
+                    frame, 
+                    "File saved succefully", 
+                    "Saved", 
+                    JOptionPane.INFORMATION_MESSAGE
+                );
             
             } else if (result == JFileChooser.CANCEL_OPTION) {
                 // Se l'utente annulla, non fa nulla come richiesto
